@@ -24,6 +24,7 @@ const App = () => {
 
   useEffect(() => {
     localStorage.setItem("notes", JSON.stringify([...notes]));
+    setNote({ ...note, ...emptyNote });
   }, [notes]);
 
   const emptyNote: NoteInterface = {
@@ -69,7 +70,7 @@ const App = () => {
     };
     setNotes([...notes, newNote]);
 
-    setNote(emptyNote);
+    setNote({ ...note, ...emptyNote });
   };
 
   return (
