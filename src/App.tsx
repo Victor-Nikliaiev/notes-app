@@ -1,6 +1,13 @@
 import { useState, useEffect } from "react";
 import NoteComponent from "./components/Note";
-import { OnChangeFuncType, OnSubmitFuncType, NoteInterface } from "./types";
+import Form from "./components/Form";
+import {
+  OnChangeFuncType,
+  OnSubmitFuncType,
+  NoteInterface,
+  RemoveFunction,
+  NoteTrimInterface,
+} from "./types";
 
 const App = () => {
   const [error, setError] = useState<string>("");
@@ -10,9 +17,9 @@ const App = () => {
   const localNotes = JSON.parse(localStorage.getItem("notes") || "[]");
   const [notes, setNotes] = useState<NoteInterface[]>(localNotes);
 
-  const removeNote = (id: string) => {
-    const newNotes = notes.filter((note) => note.id !== id);
-    setNotes(newNotes);
+  const removeNote: RemoveFunction = (id: string) => {
+    const restOfNotes = notes.filter((note) => note.id !== id);
+    setNotes(restOfNotes);
   };
 
   useEffect(() => {
@@ -26,7 +33,7 @@ const App = () => {
   };
   const [note, setNote] = useState<NoteInterface>(emptyNote);
 
-  let handlerOnChange: OnChangeFuncType = (e) => {
+  const handlerOnChange: OnChangeFuncType = (e) => {
     if (error) {
       setError("");
     }
@@ -51,8 +58,10 @@ const App = () => {
     let noteKeys: string[] = Object.keys(note);
 
     noteValues = noteValues.map((value) => value.trim());
-    let trimResult: any = {};
-    noteKeys.forEach((key, i) => (trimResult[key] = noteValues[i]));
+    let trimResult: NoteTrimInterface = emptyNote;
+    noteKeys.forEach(
+      (key, i) => (trimResult[key as keyof NoteTrimInterface] = noteValues[i])
+    );
 
     const newNote: NoteInterface = {
       ...trimResult,
@@ -67,42 +76,12 @@ const App = () => {
     <>
       <article className="container">
         <h1>Note App v1.0</h1>
-        <form onSubmit={handlerOnSubmit}>
-          <div className="input-container">
-            <label htmlFor="title">Title : </label>
-            <input
-              type="text"
-              name="title"
-              id="title"
-              value={note.title}
-              onChange={handlerOnChange}
-            />
-          </div>
-          <div className="input-container">
-            <label htmlFor="content">Content : </label>
-
-            <textarea
-              name="content"
-              id="content"
-              value={note.content}
-              onChange={handlerOnChange}
-            ></textarea>
-          </div>
-          <div className="input-container">
-            <label htmlFor="author">Author : </label>
-            <input
-              type="text"
-              name="author"
-              id="author"
-              value={note.author}
-              onChange={handlerOnChange}
-            />
-          </div>
-          {error && (
-            <h1 style={{ color: "red", fontWeight: "bold" }}>{error}</h1>
-          )}
-          <button type="submit">add note</button>
-        </form>
+        <Form
+          handlerOnChange={handlerOnChange}
+          handlerOnSubmit={handlerOnSubmit}
+          note={note}
+          error={error}
+        />
         {notes.length > 0 && (
           <section className="notes-section">
             {notes.map((note) => {
