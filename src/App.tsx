@@ -24,7 +24,7 @@ const App = () => {
 
   useEffect(() => {
     localStorage.setItem("notes", JSON.stringify([...notes]));
-    setNote({ ...note, ...emptyNote });
+    setNote((note) => ({ ...note, title: "", content: "", author: "" }));
   }, [notes]);
 
   const emptyNote: NoteInterface = {
@@ -32,6 +32,7 @@ const App = () => {
     content: "",
     author: "",
   };
+
   const [note, setNote] = useState<NoteInterface>(emptyNote);
 
   const handlerOnChange: OnChangeFuncType = (e) => {
@@ -69,8 +70,6 @@ const App = () => {
       id: new Date().getTime().toString(),
     };
     setNotes([...notes, newNote]);
-
-    setNote({ ...note, ...emptyNote });
   };
 
   return (
