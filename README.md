@@ -17,4 +17,4 @@ All Thanks to everyone who inspiring me to do it!
 
 ## Live version
 
-Live version is: [here](htpps://google.com)
+Live version is: [here](https://notes-app-arhis.vercel.app/)
