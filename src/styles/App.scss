@@ -1,6 +1,11 @@
 @import "./components/reset";
+@import "./components/mainStyles";
+@import "./components/addNote";
+@import "./components/scrollBar";
+@import "./components/notesSection";
+@import "./components/transitionGroup";
 
-body {
-  background-color: rgb(46, 3, 23);
-  color: rgb(250, 217, 231);
-}
+/*
+** All thanks to everyone inspiring me to make this kind of simple apps :D 
+** Compiled by Victor Nikliaiev (Arhis Alight)
+*/

@@ -1,0 +1,100 @@
+/*
+==============
+Notes section
+==============
+*/
+
+.noNotesMessage {
+  text-align: center;
+  width: 100%;
+  font-size: 2.3vw;
+}
+
+@media only screen and (max-width: 400px) {
+  .noNotesMessage {
+    font-size: 4vw;
+  }
+}
+
+.notes-section {
+  display: grid;
+  margin: 2rem 0;
+  gap: 1rem 1rem;
+  width: 60vw;
+  height: auto;
+}
+
+// Note item
+
+.note {
+  margin: 1rem 1rem;
+  background-color: $container-color;
+  border-width: 3px;
+  border-style: solid;
+  border-image: linear-gradient(to bottom, #9c9a9b, #1e1d2e) 1 100%;
+
+  display: grid;
+  position: relative;
+  grid-template-columns: 1fr;
+  font-size: 2rem;
+
+  &__data {
+    display: grid;
+
+    &__title {
+      padding: 1rem;
+      text-transform: capitalize;
+      background: $background-color;
+      border-bottom: 2px solid $button-back-color;
+      font-family: $fourth-font-family;
+      align-self: center;
+      font-weight: 200;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+    &__content {
+      font-size: 1.3rem;
+      padding: 2vw;
+    }
+    &__author {
+      text-transform: capitalize;
+      justify-self: end;
+      margin-right: 1vw;
+      font-family: $first-font-family;
+      font-size: 1.7rem;
+    }
+    &__date {
+      margin-left: 1vw;
+      font-family: $fourth-font-family;
+      font-size: 1rem;
+      color: $button-back-color-hover;
+    }
+
+    &__dateAuthor {
+      display: flex;
+      justify-content: space-between;
+    }
+    &__delBtn {
+      transition: all 0.6s;
+      text-transform: capitalize;
+      padding: 0.8rem;
+      justify-self: center;
+
+      cursor: pointer;
+      background-color: $button-back-color;
+      text-decoration: none;
+      outline: none;
+      border: none;
+      color: #fdfdfe;
+      font-size: 1rem;
+      margin-top: 1vw;
+      margin-bottom: 1vw;
+      &:hover {
+        background: $hover-del-btn;
+      }
+    }
+    &__ico {
+      margin-right: 0.6rem;
+    }
+  }
+}

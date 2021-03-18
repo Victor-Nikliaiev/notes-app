@@ -1,0 +1,54 @@
+$background-color: #1e1d2e;
+$scroll-background-color: #1c1b2c;
+$container-color: #242336;
+$hover-del-btn: rgb(250, 101, 101);
+
+$first-font-family: "Redressed", cursive;
+$second-font-family: "Open Sans Condensed", sans-serif;
+$third-font-family: "Quicksand", sans-serif;
+$fourth-font-family: "Poppins", sans-serif;
+$button-back-color: hsla(265, 33%, 84%, 0.16);
+$button-back-color-hover: hsla(265, 33%, 84%, 0.3);
+
+/*
+============
+Main styles
+============
+*/
+
+body {
+  width: 100%;
+  font-family: $second-font-family;
+  background: $background-color;
+  color: rgb(250, 217, 231);
+}
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 0;
+}
+
+@media only screen and (max-width: 500px) {
+  .wrapper {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+body::before {
+  content: "";
+  opacity: 0.3;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: url("https://picsum.photos/1000") no-repeat center center fixed;
+  background-size: cover;
+}

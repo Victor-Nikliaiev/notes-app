@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import NoteComponent from "./components/Note";
 import Form from "./components/Form";
 import {
@@ -8,14 +8,18 @@ import {
   RemoveFunction,
   NoteTrimInterface,
 } from "./types";
+import { BsPencilSquare } from "react-icons/bs";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 const App = () => {
+  const nodeRef = React.useRef(null);
   const [error, setError] = useState<string>("");
   if (localStorage.getItem("notes") === null) {
     localStorage.setItem("notes", JSON.stringify([]));
   }
   const localNotes = JSON.parse(localStorage.getItem("notes") || "[]");
   const [notes, setNotes] = useState<NoteInterface[]>(localNotes);
+  const [areNotes, setAreNotes] = useState(false);
 
   const removeNote: RemoveFunction = (id: string) => {
     const restOfNotes = notes.filter((note) => note.id !== id);
@@ -23,9 +27,24 @@ const App = () => {
   };
 
   useEffect(() => {
+    notes.sort((a, b) => {
+      return parseInt(b.id as string) - parseInt(a.id as string);
+    });
     localStorage.setItem("notes", JSON.stringify([...notes]));
     setNote((note) => ({ ...note, title: "", content: "", author: "" }));
   }, [notes]);
+
+  useEffect(() => {
+    if (notes.length === 0) {
+      setAreNotes(() => {
+        return false;
+      });
+      return;
+    }
+    if (areNotes === false && notes.length > 0) {
+      setAreNotes(true);
+    }
+  }, [notes, setAreNotes, areNotes]);
 
   const emptyNote: NoteInterface = {
     title: "",
@@ -74,28 +93,58 @@ const App = () => {
 
   return (
     <>
-      <article className="container">
-        <h1>Note App v1.0</h1>
-        <Form
-          handlerOnChange={handlerOnChange}
-          handlerOnSubmit={handlerOnSubmit}
-          note={note}
-          error={error}
-        />
-        {notes.length > 0 && (
+      <div className="wrapper">
+        <div className="box">
+          <article className="add-container">
+            <h1 className="add-container__title">
+              <BsPencilSquare />
+              <span> add note</span>
+            </h1>
+            <Form
+              handlerOnChange={handlerOnChange}
+              handlerOnSubmit={handlerOnSubmit}
+              note={note}
+              error={error}
+            />
+          </article>
+        </div>
+
+        {notes.length === 0 ? (
+          <CSSTransition
+            in={areNotes}
+            timeout={500}
+            classNames="my-node"
+            nodeRef={nodeRef}
+            className="noNotesMessage"
+          >
+            <h1 ref={nodeRef} key={1}>
+              There are no notes, you could add few...
+            </h1>
+          </CSSTransition>
+        ) : (
           <section className="notes-section">
-            {notes.map((note) => {
-              return (
-                <NoteComponent
-                  key={note.id}
-                  {...note}
-                  removeNote={removeNote}
-                />
-              );
-            })}
+            <TransitionGroup>
+              {notes.map((note) => {
+                return (
+                  <CSSTransition
+                    key={note.id}
+                    timeout={700}
+                    classNames="note"
+                    nodeRef={nodeRef}
+                  >
+                    <NoteComponent
+                      key={note.id}
+                      {...note}
+                      removeNote={removeNote}
+                      nodeRef={nodeRef}
+                    />
+                  </CSSTransition>
+                );
+              })}
+            </TransitionGroup>
           </section>
         )}
-      </article>
+      </div>
     </>
   );
 };

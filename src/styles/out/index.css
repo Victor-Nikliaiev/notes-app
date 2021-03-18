@@ -6,9 +6,387 @@
   box-sizing: border-box;
 }
 
+/*
+============
+Main styles
+============
+*/
 body {
-  background-color: #2e0317;
+  width: 100%;
+  font-family: "Open Sans Condensed", sans-serif;
+  background: #1e1d2e;
   color: #fad9e7;
 }
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 0;
+}
+
+@media only screen and (max-width: 500px) {
+  .wrapper {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+  }
+}
+body::before {
+  content: "";
+  opacity: 0.3;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: url("https://picsum.photos/1000") no-repeat center center fixed;
+  background-size: cover;
+}
+
+/*
+==============
+AddNote Styles
+==============
+*/
+.box {
+  margin: 2rem;
+  width: 40vw;
+  align-self: flex-start;
+  position: relative;
+  background: #242336;
+}
+.box::before {
+  content: "";
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  top: -2px;
+  bottom: -2px;
+  background: #fff;
+  z-index: -1;
+  filter: blur(0.3rem);
+}
+.box::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  top: -2px;
+  bottom: -2px;
+  background: #fff;
+  z-index: -2;
+}
+.box::before, .box::after {
+  background: linear-gradient(250deg, red, orange, yellow, green, #3636aa, blue, purple);
+}
+
+.add-container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  text-transform: capitalize;
+  width: 40vw;
+}
+.add-container__title {
+  padding: 1rem;
+  width: 100%;
+  display: block;
+  border-bottom: 3px solid rgba(212, 201, 228, 0.16);
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 3vw;
+  text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .add-container__title {
+    font-size: 1rem;
+    text-align: center;
+    padding: 0;
+    margin: auto;
+  }
+
+  .add-container {
+    padding: 1rem;
+  }
+}
+/*
+  =======
+  Form
+  =======
+  */
+form {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  width: 35vw;
+  margin-top: 1rem;
+}
+
+.input-container {
+  margin: 0.3rem;
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+
+label {
+  font-size: 2vw;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+label * {
+  margin: 0.2rem;
+}
+
+@media only screen and (max-width: 720px) {
+  .input-container {
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
+  label {
+    font-size: 3vw;
+  }
+}
+@media only screen and (max-width: 420px) {
+  label {
+    font-size: 4vw;
+  }
+}
+.text-area {
+  height: 20vh;
+  resize: none;
+}
+
+.text-area,
+input {
+  outline: 0;
+  border: none;
+  border-radius: 0.1rem;
+  padding: 0.3rem;
+  background: #1e1d2e;
+  font-family: "Quicksand", sans-serif;
+  color: aliceblue;
+  font-size: 2vw;
+}
+
+@media only screen and (max-width: 600px) {
+  input,
+.text-area {
+    font-size: 4vw;
+  }
+}
+.btn {
+  transition: all 0.3s;
+  cursor: pointer;
+  margin-top: 2vw;
+  align-self: center;
+  height: 10%;
+  width: 40%;
+  background-color: rgba(212, 201, 228, 0.16);
+  text-decoration: none;
+  outline: none;
+  border: none;
+  color: #fdfdfe;
+  font-size: 1.5vw;
+  padding: 1.1vw;
+}
+.btn:hover {
+  background: rgba(212, 201, 228, 0.3);
+}
+
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+  background: #1e1d2e;
+  width: 100%;
+  height: 80px;
+  border: 2px solid rgba(212, 201, 228, 0.16);
+  text-transform: none;
+  font-size: 1.2vw;
+  padding: 1vw;
+  text-align: center;
+  color: #f33f3f;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+}
+
+@media only screen and (max-width: 320px) {
+  .error {
+    font-size: 3vw;
+  }
+}
+/*
+============
+Scroll bar
+============
+*/
+/* width */
+::-webkit-scrollbar {
+  width: 15px;
+  cursor: pointer;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #1c1b2c;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(212, 201, 228, 0.16);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 201, 228, 0.3);
+}
+
+/*
+==============
+Notes section
+==============
+*/
+.noNotesMessage {
+  text-align: center;
+  width: 100%;
+  font-size: 2.3vw;
+}
+
+@media only screen and (max-width: 400px) {
+  .noNotesMessage {
+    font-size: 4vw;
+  }
+}
+.notes-section {
+  display: grid;
+  margin: 2rem 0;
+  gap: 1rem 1rem;
+  width: 60vw;
+  height: auto;
+}
+
+.note {
+  margin: 1rem 1rem;
+  background-color: #242336;
+  border-width: 3px;
+  border-style: solid;
+  border-image: linear-gradient(to bottom, #9c9a9b, #1e1d2e) 1 100%;
+  display: grid;
+  position: relative;
+  grid-template-columns: 1fr;
+  font-size: 2rem;
+}
+.note__data {
+  display: grid;
+}
+.note__data__title {
+  padding: 1rem;
+  text-transform: capitalize;
+  background: #1e1d2e;
+  border-bottom: 2px solid rgba(212, 201, 228, 0.16);
+  font-family: "Poppins", sans-serif;
+  align-self: center;
+  font-weight: 200;
+  font-size: 1.5rem;
+  text-align: center;
+}
+.note__data__content {
+  font-size: 1.3rem;
+  padding: 2vw;
+}
+.note__data__author {
+  text-transform: capitalize;
+  justify-self: end;
+  margin-right: 1vw;
+  font-family: "Redressed", cursive;
+  font-size: 1.7rem;
+}
+.note__data__date {
+  margin-left: 1vw;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  color: rgba(212, 201, 228, 0.3);
+}
+.note__data__dateAuthor {
+  display: flex;
+  justify-content: space-between;
+}
+.note__data__delBtn {
+  transition: all 0.6s;
+  text-transform: capitalize;
+  padding: 0.8rem;
+  justify-self: center;
+  cursor: pointer;
+  background-color: rgba(212, 201, 228, 0.16);
+  text-decoration: none;
+  outline: none;
+  border: none;
+  color: #fdfdfe;
+  font-size: 1rem;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+}
+.note__data__delBtn:hover {
+  background: #fa6565;
+}
+.note__data__ico {
+  margin-right: 0.6rem;
+}
+
+/*
+=================
+Transition group
+=================
+*/
+.my-node-enter {
+  opacity: 0;
+}
+
+.my-node-enter-active {
+  opacity: 1;
+  transition: all 500ms;
+}
+
+.my-node-exit {
+  opacity: 1;
+}
+
+.my-node-exit-active {
+  opacity: 0;
+  transition: all 500ms;
+}
+
+.note-enter {
+  opacity: 0;
+}
+
+.note-enter-active {
+  opacity: 1;
+  transition: opacity 700ms ease-in-out;
+}
+
+.note-exit {
+  opacity: 1;
+}
+
+.note-exit-active {
+  opacity: 0;
+  transition: opacity 700ms ease-in;
+}
+
+/*
+** All thanks to everyone inspiring me to make this kind of simple apps :D 
+** Compiled by Victor Nikliaiev (Arhis Alight)
+*/
 
 /*# sourceMappingURL=index.css.map */

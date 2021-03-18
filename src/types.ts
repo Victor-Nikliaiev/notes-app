@@ -1,3 +1,5 @@
+import React from "react";
+
 type InputEvent = React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>;
 type SubmitEvent = React.SyntheticEvent;
 export type RemoveFunction = (id: string) => void;
@@ -14,6 +16,7 @@ export interface NoteTrimInterface {
 
 export interface NoteInterface extends NoteTrimInterface {
   removeNote?: RemoveFunction;
+  nodeRef?: React.MutableRefObject<null>;
 }
 
 export interface FormInterface {

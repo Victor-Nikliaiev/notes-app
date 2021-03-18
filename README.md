@@ -1,46 +1,20 @@
-# Getting Started with Create React App
+# Note App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is an instance of the well-known Note App :D
+But the thing is, I've kept functionality as it is expected similar; here is "add" and "delete" note(might be "edit" but for now I desided to use it as soon as I would create apps with some back-end). Here is not any back-end like databases in use. I just used Local Storage for saving notes.
+What I did additional. I worked a bit on design to make it intertaining. Also it was used Lorem Picsum API to generate random background picture every time as the page was updated. This app has responsive design.
 
-## Available Scripts
+> Summary of tecnologies that have been used:
 
-In the project directory, you can run:
+1. [TypeScript](https://www.typescriptlang.org/) it cost me some pane :D (I've been used it not for a long while) But I like it and understand benefits of using this super-set.
+2. [SCSS](https://sass-lang.com/)
+3. [React.Js](https://reactjs.org/) (useState, useEffect) and conditional rendering.
+4. [React Transition Group](https://reactcommunity.org/react-transition-group/)
+5. [React Icons](https://react-icons.github.io/react-icons/)
+6. [Lorem Picsum API](https://github.com/facebook/create-react-app)
 
-### `yarn start`
+All Thanks to everyone who inspiring me to do it!
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Live version
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Live version is: [here](htpps://google.com)

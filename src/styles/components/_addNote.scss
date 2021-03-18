@@ -1,0 +1,191 @@
+/*
+==============
+AddNote Styles
+==============
+*/
+.box {
+  margin: 2rem;
+  width: 40vw;
+  align-self: flex-start;
+  position: relative;
+  background: $container-color;
+  &::before {
+    content: "";
+    position: absolute;
+    left: -2px;
+    right: -2px;
+    top: -2px;
+    bottom: -2px;
+    background: #fff;
+    z-index: -1;
+    filter: blur(0.3rem);
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    left: -2px;
+    right: -2px;
+    top: -2px;
+    bottom: -2px;
+    background: #fff;
+    z-index: -2;
+  }
+  &::before,
+  &::after {
+    background: linear-gradient(
+      250deg,
+      red,
+      orange,
+      yellow,
+      green,
+      rgb(54, 54, 170),
+      blue,
+      purple
+    );
+  }
+}
+
+.add-container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  text-transform: capitalize;
+  width: 40vw;
+
+  &__title {
+    padding: 1rem;
+    width: 100%;
+    display: block;
+    border-bottom: 3px solid $button-back-color;
+    font-family: $fourth-font-family;
+    font-weight: 300;
+    font-size: 3vw;
+    text-align: center;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .add-container__title {
+    font-size: 1rem;
+    text-align: center;
+    padding: 0;
+    margin: auto;
+  }
+  .add-container {
+    padding: 1rem;
+  }
+}
+
+/*
+  =======
+  Form
+  =======
+  */
+
+form {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  width: 35vw;
+  margin-top: 1rem;
+}
+
+.input-container {
+  margin: 0.3rem;
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+
+label {
+  font-size: 2vw;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  * {
+    margin: 0.2rem;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .input-container {
+    display: flex;
+    flex-flow: column nowrap;
+  }
+  label {
+    font-size: 3vw;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  label {
+    font-size: 4vw;
+  }
+}
+
+.text-area {
+  height: 20vh;
+  resize: none;
+}
+
+.text-area,
+input {
+  outline: 0;
+  border: none;
+  border-radius: 0.1rem;
+  padding: 0.3rem;
+  background: #1e1d2e;
+  font-family: $third-font-family;
+  color: aliceblue;
+  font-size: 2vw;
+}
+
+@media only screen and (max-width: 600px) {
+  input,
+  .text-area {
+    font-size: 4vw;
+  }
+}
+
+.btn {
+  transition: all 0.3s;
+  cursor: pointer;
+  margin-top: 2vw;
+  align-self: center;
+  height: 10%;
+  width: 40%;
+  background-color: $button-back-color;
+  text-decoration: none;
+  outline: none;
+  border: none;
+  color: #fdfdfe;
+  font-size: 1.5vw;
+  padding: 1.1vw;
+  &:hover {
+    background: $button-back-color-hover;
+  }
+}
+
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+  background: $background-color;
+  width: 100%;
+  height: 80px;
+  border: 2px solid $button-back-color;
+  text-transform: none;
+  font-size: 1.2vw;
+  padding: 1vw;
+  text-align: center;
+  color: rgb(243, 63, 63);
+  font-family: $fourth-font-family;
+  font-weight: 600;
+}
+
+@media only screen and (max-width: 320px) {
+  .error {
+    font-size: 3vw;
+  }
+}
